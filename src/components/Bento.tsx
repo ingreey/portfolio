@@ -8,9 +8,9 @@ import StackSupport from "./StackSupport";
 function Bento() {
   const workArray = [
     <Coindeed />,
-    <Coinvise />,
-    <Optifi />,
     <StackSupport />,
+    <Optifi />,
+    <Coinvise />,
     <Passage />,
   ];
 
