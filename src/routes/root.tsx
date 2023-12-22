@@ -1,50 +1,58 @@
-import { useState } from "react";
 import Bento from "../components/Bento";
 
 function Root() {
-  const [active] = useState("projects");
   return (
-    <div className="p-8">
-      <div className="flex flex-col gap-4 justify-center font-playfair ">
-        <div className="w-full text-[#202020] lowercase text-[24px] gap-1 flex flex-col items-end">
-          <div>nickey</div>
-          <div>web3 Developer</div>
-          <button className="italic w-min">email</button>
-          <div className="w-full items-start flex justify-between">
+    <div className="px-16">
+      <div
+        className="flex flex-col gap-20 justify-center font-playfair"
+        style={{ minHeight: "calc(100vh - 100px)" }}
+      >
+        <div className="flex justify-between">
+          <div className="text-md flex items-end">
+            This site is very much a wip, I haven't even gotten a bio up yet ~
+            ideally the projects would lead to pages about the project but
+            haven't added them yet, so they're just the GH or Twitter links if I
+            have them
+          </div>
+          <div className="w-full text-[#202020] lowercase text-[24px] gap-1 flex flex-col items-end">
+            <div>nickey</div>
+            <div>web3 Developer</div>
+            <button className="italic w-min">email</button>
             <div className="flex">
-              <button
-                className={
-                  active !== "projects" ? "text-[#EAEAEA]" : "text-[#202020]"
-                }
-              >
-                projects
-              </button>
-              <button
-                className={
-                  active !== "photos" ? "text-[#EAEAEA]" : "text-[#202020]"
-                }
-              >
-                /photos
-              </button>
-            </div>
-            {/* Socials */}
-            <div className="flex py-1 items-center gap-2">
-              <button>
-                <img src="/icons/linkedin.svg" alt="linkedin" />
-              </button>
-              <button>
-                <img src="/icons/twitter.svg" alt="twitter" />
-              </button>
-              <button>
-                <img src="/icons/github.svg" alt="github" />
-              </button>
+              {/* Socials */}
+              <div className="flex py-1 items-center gap-2">
+                <SocialButton
+                  name={"twitter"}
+                  url="https://twitter.com/nickeym"
+                />
+                <SocialButton
+                  name={"linkedin"}
+                  url="https://linkedin.com/in/nicholasma"
+                />
+                <SocialButton
+                  name={"github"}
+                  url="https://github.com/nickeym"
+                />
+              </div>
             </div>
           </div>
         </div>
+
         <Bento />
       </div>
     </div>
   );
 }
+interface SocialButtonProps {
+  name: string;
+  url: string;
+}
 
+function SocialButton({ name, url }: SocialButtonProps) {
+  return (
+    <a href={url} target="_blank" rel="noopener noreferrer">
+      <img src={`/icons/${name}.svg`} alt={name} />
+    </a>
+  );
+}
 export default Root;
