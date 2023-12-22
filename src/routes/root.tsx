@@ -2,7 +2,7 @@ import { useState } from "react";
 import Bento from "../components/Bento";
 
 function Root() {
-  const [active, setActive] = useState("projects");
+  const [active] = useState("projects");
   return (
     <div className="p-8">
       <div className="flex flex-col gap-4 justify-center font-playfair ">
