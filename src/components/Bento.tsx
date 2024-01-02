@@ -43,6 +43,7 @@ function Bento() {
         {workArray.map((work, i) => (
           <div
             key={i}
+            id={`work-${i}`}
             className={`h-full w-full cursor-pointer row-span-1 rounded-xl border-2 border-slate-400/10 bg-neutral-100 p- ${
               i === 3 || i === 6 ? "col-span-2" : ""
             }

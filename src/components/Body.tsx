@@ -1,16 +1,41 @@
+import { useLayoutEffect, useRef } from "react";
 import Bento from "./Bento";
-import { motion } from "framer-motion";
+import gsap from "gsap";
 
 function Body() {
+  const comp = useRef(null);
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+      const t1 = gsap.timeline();
+      t1.from("#intro-slider", {
+        xPercent: "-100",
+        duration: 1.3,
+        delay: 0.3,
+      })
+        .to("#intro-slider", {
+          xPercent: "110",
+          duration: 1.3,
+          delay: 0.3,
+        })
+        .from("#main", {
+          opacity: 0,
+          y: "-=30",
+          delay: 0.3,
+        });
+    }, comp);
+    return () => ctx.revert();
+  }, []);
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 100 }}
-      animate={{ opacity: 1, y: 1 }}
-      exit={{}}
-      transition={{ duration: 0.5 }}
-    >
+    <div className="relative" ref={comp}>
+      <div className="h-screen absolute w-full" id="intro-slider">
+        <div className="h-full text-[#202020] justify-center lowercase text-9xl gap-10 flex flex-col">
+          <div>nickey</div>
+          <div>web3 Developer</div>
+        </div>
+      </div>
       <div
         className="flex flex-col gap-20 justify-center font-playfair"
+        id="main"
         style={{ minHeight: "calc(100vh - 100px)" }}
       >
         <div className="flex justify-between">
@@ -46,7 +71,7 @@ function Body() {
 
         <Bento />
       </div>
-    </motion.div>
+    </div>
   );
 }
 
